@@ -193,19 +193,18 @@
                     const dice = Math.floor(Math.random() * 6) + 1;
                     diceImg.src = `dice${dice}.png`;
 
-                    // --- ここから修正 ---
+                    // --- 強制ストップロジック ---
                     const uenoIndex = 12; // 新宿スタートで上野は12番目
                     const nextPosition = position + dice;
 
                     // もし「現在地が上野より前」かつ「進んだ先が上野かそれ以降」なら上野で止める
                     if (position < uenoIndex && nextPosition >= uenoIndex) {
                         position = uenoIndex;
-                        // 止まったことがわかるようにアラート（不要なら消してOK！）
-                        setTimeout(() => { alert("上野に強制停車します！"); }, 400);
+                        // ★ アラートを消しました！
                     } else {
                         position = nextPosition % 30;
                     }
-                    // --- ここまで修正 ---
+                    // ----------------------------
 
                     setTimeout(() => {
                         moveMarker();
